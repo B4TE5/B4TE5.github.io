@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="halo" cx="85%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a09"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#halo)"/>
+  <text x="80" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#6b6b68" letter-spacing="4">// CYBERSECURITY ENGINEER</text>
+  <text x="80" y="320" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="104" font-weight="600" fill="#f5f5f4" letter-spacing="-3">Carlos Peraza</text>
+  <text x="80" y="400" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="34" font-weight="400" fill="#a8a8a3" letter-spacing="-1">SIEM · Threat Detection · Bug Bounty</text>
+  <text x="80" y="560" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#22d3ee">$ whoami → cybersecurity engineer</text>
+  <text x="1120" y="560" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#6b6b68" text-anchor="end">b4te5</text>
+</svg>
