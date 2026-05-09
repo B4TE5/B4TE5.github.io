@@ -313,6 +313,7 @@
     height: 18px;
     display: block;
   }
+  .mobile-menu-toggle { display: none; }
   .theme-toggle .moon-icon { display: none; }
   [data-theme="dark"] .theme-toggle .sun-icon { display: none; }
   [data-theme="dark"] .theme-toggle .moon-icon { display: block; }
@@ -1445,16 +1446,17 @@
       padding-left: 1.25rem;
     }
     .nav-inner {
-      flex-wrap: wrap;
-      row-gap: 0.75rem;
+      position: relative;
+      flex-wrap: nowrap;
       padding-right: 1.25rem;
       padding-left: 1.25rem;
       min-width: 0;
     }
     .nav-right {
-      width: 100%;
+      width: auto;
+      margin-left: auto;
       justify-content: space-between;
-      gap: 0.75rem;
+      gap: 8px;
       min-width: 0;
     }
     .nav-controls {
@@ -1463,22 +1465,72 @@
       margin-right: 0;
       flex: 0 0 auto;
     }
+    .mobile-menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      flex: 0 0 auto;
+      background: var(--bg-card);
+    }
     .nav-links {
-      flex: 1 1 auto;
-      gap: 1rem;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 1.25rem;
+      z-index: 150;
+      width: min(240px, calc(100vw - 2rem));
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(var(--bg-rgb), 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
       min-width: 0;
       max-width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px) scale(0.98);
+      transform-origin: top right;
+      transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
     }
-    .nav-links::-webkit-scrollbar {
-      display: none;
+    .nav-links.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
     }
     .nav-links a {
+      display: flex;
+      width: 100%;
       flex: 0 0 auto;
+      padding: 10px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition:
+        color 0.18s ease,
+        background-color 0.18s ease;
+    }
+    .nav-links a::before {
+      display: none;
+    }
+    .nav-links a:hover,
+    .nav-links a.is-active {
+      background: var(--bg-card);
+    }
+    .nav-links a.is-active {
+      padding-left: 12px;
     }
     .hero {
       grid-template-columns: 1fr;
@@ -1488,6 +1540,7 @@
     }
     .hero h1 {
       font-size: clamp(36px, 9vw, 48px);
+      white-space: nowrap;
     }
     .hero-portrait {
       order: -1;
@@ -1495,6 +1548,7 @@
     .hero-portrait img {
       width: 140px;
       height: 140px;
+      object-position: center 35%;
     }
     .hero-scroll {
       bottom: 16px;
@@ -1687,6 +1741,7 @@
     .nav-toggle,
     nav a,
     .cta a,
+    .nav-links,
     .project,
     .mini-card,
     .contact-links a,
@@ -1931,7 +1986,10 @@
         </button>
         <button class="nav-toggle lang-toggle" type="button" aria-label="Cambiar idioma" data-lang-toggle data-i18n-aria="nav.langToggle">ES</button>
       </div>
-      <div class="nav-links">
+      <button class="nav-toggle mobile-menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav-menu" data-mobile-menu-toggle>
+        <i data-lucide="menu" aria-hidden="true"></i>
+      </button>
+      <div class="nav-links" id="mobile-nav-menu">
         <a href="#about" data-i18n="nav.about">about</a>
         <a href="#experiencia" data-i18n="nav.experience">experiencia</a>
         <a href="#proyectos" data-i18n="nav.projects">proyectos</a>
@@ -2546,6 +2604,8 @@
       "nav.more": "extras",
       "nav.themeToggle": "Cambiar tema",
       "nav.langToggle": "Cambiar idioma",
+      "nav.menuOpen": "Abrir menú",
+      "nav.menuClose": "Cerrar menú",
       "hero.role": "Ingeniero Informático · Madrid",
       "hero.ledeA": "Junior Cybersecurity Consultant en Deloitte",
       "hero.ledeB": " (Security Architecture). Construyo proyectos ",
@@ -2654,6 +2714,8 @@
       "nav.more": "more",
       "nav.themeToggle": "Change theme",
       "nav.langToggle": "Change language",
+      "nav.menuOpen": "Open menu",
+      "nav.menuClose": "Close menu",
       "hero.role": "Computer Engineer · Madrid",
       "hero.ledeA": "Junior Cybersecurity Consultant at Deloitte",
       "hero.ledeB": " (Security Architecture). I build ",
@@ -2773,8 +2835,24 @@
   const nav = document.querySelector("nav");
   const themeToggle = document.querySelector("[data-theme-toggle]");
   const langToggle = document.querySelector("[data-lang-toggle]");
+  const mobileMenuToggle = document.querySelector("[data-mobile-menu-toggle]");
   const metaDescription = document.querySelector('meta[name="description"]');
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const mobileViewportQuery = window.matchMedia("(max-width: 719px)");
+  const isMobileViewport = () => mobileViewportQuery.matches;
+  const getCurrentLanguage = () => document.documentElement.lang === "en" ? "en" : "es";
+  const getTranslation = (key, lang = getCurrentLanguage()) => translations[lang]?.[key] || translations.es[key] || key;
+  const syncMobileMenuToggleLabel = (open = document.querySelector(".nav-links")?.classList.contains("is-open")) => {
+    if (!mobileMenuToggle) return;
+    mobileMenuToggle.setAttribute("aria-label", getTranslation(open ? "nav.menuClose" : "nav.menuOpen"));
+  };
+  const onMobileViewportChange = (handler) => {
+    if (mobileViewportQuery.addEventListener) {
+      mobileViewportQuery.addEventListener("change", handler);
+    } else {
+      mobileViewportQuery.addListener?.(handler);
+    }
+  };
 
   const themeIconColors = { dark: "a8a8a3", light: "56524b" };
   const buildTechIconUrl = (slug, mode = "muted") => {
@@ -2844,6 +2922,7 @@
     document.title = dictionary["meta.title"];
     if (metaDescription) metaDescription.setAttribute("content", dictionary["meta.description"]);
     if (langToggle) langToggle.textContent = nextLang.toUpperCase();
+    syncMobileMenuToggleLabel();
     if (persist) setStoredValue("portfolio-lang", nextLang);
   };
 
@@ -2905,6 +2984,44 @@
         history.pushState(null, "", link.getAttribute("href"));
       });
     });
+  };
+
+  const initMobileMenu = () => {
+    const menu = document.querySelector(".nav-links");
+    if (!mobileMenuToggle || !menu) return;
+
+    const setOpen = (open) => {
+      const shouldOpen = Boolean(open) && isMobileViewport();
+      menu.classList.toggle("is-open", shouldOpen);
+      mobileMenuToggle.setAttribute("aria-expanded", String(shouldOpen));
+      syncMobileMenuToggleLabel(shouldOpen);
+    };
+
+    mobileMenuToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setOpen(!menu.classList.contains("is-open"));
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!menu.classList.contains("is-open")) return;
+      if (event.target instanceof Element && event.target.closest("nav")) return;
+      setOpen(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+
+    const closeOnDesktop = () => {
+      if (!isMobileViewport()) setOpen(false);
+    };
+    window.addEventListener("resize", closeOnDesktop, { passive: true });
+    onMobileViewportChange(closeOnDesktop);
+    syncMobileMenuToggleLabel(false);
   };
 
   const scrollToSection = (target) => {
@@ -3765,8 +3882,18 @@ void main() {
   const initNameDecode = () => {
     const name = document.querySelector("[data-decode-name]");
     const finalText = "Carlos Peraza";
+    const renderFinalName = () => {
+      if (!name) return;
+      if (isMobileViewport()) {
+        name.replaceChildren(finalText);
+      } else {
+        name.replaceChildren("Carlos", document.createElement("br"), "Peraza");
+      }
+    };
+
     if (!name || reducedMotionQuery.matches) {
-      if (name) name.replaceChildren("Carlos", document.createElement("br"), "Peraza");
+      renderFinalName();
+      onMobileViewportChange(renderFinalName);
       return;
     }
 
@@ -3776,7 +3903,7 @@ void main() {
       const fragment = document.createDocumentFragment();
       [...finalText].forEach((char, index) => {
         fragment.append(char === " "
-          ? document.createElement("br")
+          ? (isMobileViewport() ? " " : document.createElement("br"))
           : index < resolvedCount ? char : randomChar());
       });
       name.replaceChildren(fragment);
@@ -3784,7 +3911,11 @@ void main() {
 
     const start = performance.now();
     const resolveStartDelay = 420;
+    let decodeComplete = false;
     render(0);
+    onMobileViewportChange(() => {
+      if (decodeComplete) renderFinalName();
+    });
 
     const interval = window.setInterval(() => {
       const now = performance.now();
@@ -3796,7 +3927,8 @@ void main() {
 
       render(resolvedCount);
       if (resolvedCount >= finalText.length) {
-        name.replaceChildren("Carlos", document.createElement("br"), "Peraza");
+        decodeComplete = true;
+        renderFinalName();
         window.clearInterval(interval);
       }
     }, 40);
@@ -3812,6 +3944,7 @@ void main() {
   initHeroLedeReveal();
   initRevealAnimations();
   initSmoothNavScroll();
+  initMobileMenu();
   initSpotlightCards();
   initScrollProgress();
   initActiveSection();
