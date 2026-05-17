@@ -29,6 +29,7 @@
 <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script src="assets/js/demo-access.js" defer></script>
 <script>
   (() => {
     const root = document.documentElement;
@@ -1965,6 +1966,18 @@
     text-align: center;
   }
   .modal-success.is-visible { display: block; }
+  .modal-error {
+    margin: 0.85rem 0 0;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border);
+    border-left: 2px solid #ef6a6a;
+    background: rgba(239, 106, 106, 0.06);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .modal-error[hidden] { display: none; }
 </style>
 </head>
 <body>
@@ -2177,10 +2190,10 @@
           <span>Next.js 16</span><span>TypeScript</span><span>Supabase</span><span>Gemini API</span><span>Tailwind</span><span>Recharts</span>
         </div>
         <div class="project-actions">
-          <a class="project-action" href="https://sayndex.vercel.app/" target="_blank" rel="noopener">
+          <button class="project-action" type="button" data-demo="sayndex">
             <i data-lucide="external-link" aria-hidden="true"></i>
             <span data-i18n="projects.actions.demo">Live demo</span>
-          </a>
+          </button>
           <button class="project-action" type="button" data-project="sayndex">
             <img class="tech-icon" data-icon-slug="github" src="https://cdn.simpleicons.org/github/a8a8a3" width="16" height="16" alt="" loading="lazy" decoding="async">
             <span data-i18n="projects.actions.code">Source code</span>
@@ -2277,10 +2290,10 @@
           <span>Wazuh</span><span>ELK</span><span>Flask</span><span>Docker</span><span>Sigma</span><span>MITRE ATT&amp;CK</span>
         </div>
         <div class="project-actions">
-          <a class="project-action" href="https://trustforge-demo.onrender.com/" target="_blank" rel="noopener">
+          <button class="project-action" type="button" data-demo="trustforge">
             <i data-lucide="external-link" aria-hidden="true"></i>
             <span data-i18n="projects.actions.demo">Live demo</span>
-          </a>
+          </button>
           <button class="project-action" type="button" data-project="trustforge">
             <img class="tech-icon" data-icon-slug="github" src="https://cdn.simpleicons.org/github/a8a8a3" width="16" height="16" alt="" loading="lazy" decoding="async">
             <span data-i18n="projects.actions.code">Source code</span>
@@ -2332,10 +2345,10 @@
           <span>FastAPI</span><span>Claude API</span><span>RAG</span><span>Python</span>
         </div>
         <div class="project-actions">
-          <a class="project-action" href="https://clausulazo-ai.pages.dev/" target="_blank" rel="noopener">
+          <button class="project-action" type="button" data-demo="clausulazo">
             <i data-lucide="external-link" aria-hidden="true"></i>
             <span data-i18n="projects.actions.demo">Live demo</span>
-          </a>
+          </button>
           <button class="project-action" type="button" data-project="clausulazo">
             <img class="tech-icon" data-icon-slug="github" src="https://cdn.simpleicons.org/github/a8a8a3" width="16" height="16" alt="" loading="lazy" decoding="async">
             <span data-i18n="projects.actions.code">Source code</span>
@@ -2550,6 +2563,28 @@
 
 </div>
 
+<div class="modal" id="demo-access-modal" role="dialog" aria-modal="true" aria-labelledby="demo-access-modal-title" aria-hidden="true">
+  <div class="modal-backdrop" data-demo-modal-close></div>
+  <div class="modal-content" role="document">
+    <button class="modal-close" type="button" aria-label="Cerrar" data-i18n-aria="modal.close" data-demo-modal-close>
+      <i data-lucide="x" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title" id="demo-access-modal-title" data-i18n="demo.title">Acceso restringido</h3>
+    <p class="modal-intro" data-i18n="demo.intro">Introduce la clave de acceso para ver la demo</p>
+    <form class="modal-form" data-demo-modal-form novalidate>
+      <div class="modal-field">
+        <label for="demo-modal-password" data-i18n="demo.fields.password">Clave de acceso</label>
+        <input id="demo-modal-password" name="password" type="password" required autocomplete="off" spellcheck="false">
+      </div>
+      <p class="modal-error" data-demo-modal-error data-i18n="demo.error" role="alert" aria-live="polite" hidden>Clave incorrecta. Si necesitas acceso, contacta conmigo.</p>
+      <div class="modal-actions">
+        <button type="button" class="modal-cancel" data-demo-modal-close data-i18n="modal.cancel">Cancelar</button>
+        <button type="submit" class="modal-submit" data-i18n="demo.submit">Acceder</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="modal" id="source-access-modal" role="dialog" aria-modal="true" aria-labelledby="source-access-modal-title" aria-hidden="true">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-content" role="document">
@@ -2693,7 +2728,12 @@
       "modal.submit": "Enviar solicitud",
       "modal.cancel": "Cancelar",
       "modal.success": "Solicitud enviada — te respondo en menos de 24h",
-      "modal.close": "Cerrar"
+      "modal.close": "Cerrar",
+      "demo.title": "Acceso restringido",
+      "demo.intro": "Introduce la clave de acceso para ver la demo",
+      "demo.fields.password": "Clave de acceso",
+      "demo.submit": "Acceder",
+      "demo.error": "Clave incorrecta. Si necesitas acceso, contacta conmigo."
     },
     en: {
       "meta.title": "Carlos Peraza · Cybersecurity Consultant",
@@ -2800,6 +2840,11 @@
       "modal.submit": "Send request",
       "modal.cancel": "Cancel",
       "modal.success": "Request sent — I'll get back to you within 24h",
+      "demo.title": "Restricted access",
+      "demo.intro": "Enter the access key to view the demo",
+      "demo.fields.password": "Access key",
+      "demo.submit": "Access",
+      "demo.error": "Wrong key. If you need access, contact me.",
       "modal.close": "Close"
     }
   };
