@@ -32,3 +32,6 @@ build/
 # Archivos temporales
 *.tmp
 *.bak
+
+# Secretos locales del generador de cifrado de demos
+scripts/demos.local.json

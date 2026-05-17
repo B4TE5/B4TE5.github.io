@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Carlos Peraza · Ingeniero Informático y Cybersecurity Specialist. SIEM, threat detection y bug bounty." />
-<title>Carlos Peraza · Cybersecurity Engineer</title>
+<meta name="description" content="Carlos Peraza · Cybersecurity Consultant en Deloitte. Security Architecture, SIEM, threat detection y bug bounty." />
+<title>Carlos Peraza · Ingeniero Informático</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0a09' stroke='%233a382f' stroke-width='2'/%3E%3Ctext x='50' y='66' font-family='ui-monospace,SFMono-Regular,Menlo,monospace' font-size='44' font-weight='600' fill='%23f5f5f4' text-anchor='middle'%3ECP%3C/text%3E%3C/svg%3E" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Carlos Peraza · Cybersecurity Engineer" />
-<meta property="og:description" content="Ingeniero Informático y Cybersecurity Specialist. SIEM, threat detection y bug bounty." />
+<meta property="og:title" content="Carlos Peraza · Ingeniero Informático" />
+<meta property="og:description" content="Carlos Peraza · Cybersecurity Consultant en Deloitte. Security Architecture, SIEM, threat detection y bug bounty." />
 <meta property="og:image" content="og-image.svg" />
 <meta property="og:url" content="https://b4te5.github.io/" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Carlos Peraza · Cybersecurity Engineer" />
-<meta name="twitter:description" content="Ingeniero Informático y Cybersecurity Specialist. SIEM, threat detection y bug bounty." />
+<meta name="twitter:title" content="Carlos Peraza · Ingeniero Informático" />
+<meta name="twitter:description" content="Carlos Peraza · Cybersecurity Consultant en Deloitte. Security Architecture, SIEM, threat detection y bug bounty." />
 <meta name="twitter:image" content="og-image.svg" />
 <noscript>
   <style>
@@ -29,6 +29,7 @@
 <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script src="assets/js/demo-access.js" defer></script>
 <script>
   (() => {
     const root = document.documentElement;
@@ -1213,6 +1214,12 @@
     height: 1px;
     background: var(--text-dim);
   }
+  .timeline-summary {
+    margin: 0 0 14px;
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
   @media (max-width: 719px) {
     .timeline-entry {
       grid-template-columns: 1fr;
@@ -1963,6 +1970,25 @@
     text-align: center;
   }
   .modal-success.is-visible { display: block; }
+  .modal-error {
+    margin: 0.85rem 0 0;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border);
+    border-left: 2px solid #ef6a6a;
+    background: rgba(239, 106, 106, 0.06);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .modal-error[hidden] { display: none; }
+  .modal-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
@@ -2013,7 +2039,7 @@
       <p class="role" data-i18n="hero.role">Ingeniero Informático · Madrid</p>
       <h1 data-decode-name>Carlos<br>Peraza</h1>
       <p class="lede">
-        <strong data-i18n="hero.ledeA">Junior Cybersecurity Consultant en Deloitte</strong><span data-i18n="hero.ledeB"> (Security Architecture). Construyo proyectos </span><strong data-i18n="hero.ledeC">defensivos y ofensivos</strong><span data-i18n="hero.ledeD"> con stack local de IA. Bug hunter en mi tiempo libre.</span>
+        <strong data-i18n="hero.ledeA">Cybersecurity Consultant en Deloitte</strong><span data-i18n="hero.ledeB"> (Security Architecture). Construyo proyectos </span><strong data-i18n="hero.ledeC">defensivos y ofensivos</strong><span data-i18n="hero.ledeD"> con stack local de IA. Activo en bug bounty (HackerOne, Intigriti).</span>
       </p>
       <div class="stack">
         <span>Wazuh · ELK</span>
@@ -2035,10 +2061,6 @@
           <span>LinkedIn</span>
         </a>
       </div>
-      <div class="hero-status">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span data-i18n="hero.status">Disponible para oportunidades</span>
-      </div>
     </div>
     <div class="hero-portrait">
       <img src="avatar.jpg" alt="Carlos Peraza" />
@@ -2058,7 +2080,7 @@
     <div class="about-grid">
       <div class="about-bio reveal">
         <p>
-          <span data-i18n="about.p1.a">Ingeniero Informático graduado por la UFV (2025) con título propio en Ciberseguridad y Hacking Ético. Actualmente </span><strong data-i18n="about.p1.b">Junior Cybersecurity Consultant en el área de Security Architecture en Deloitte</strong><span data-i18n="about.p1.c"> (Madrid).</span>
+          <span data-i18n="about.p1.a">Ingeniero Informático graduado por la UFV (2025) con título propio en Ciberseguridad y Hacking Ético. Actualmente </span><strong data-i18n="about.p1.b">Cybersecurity Consultant en el área de Security Architecture en Deloitte</strong><span data-i18n="about.p1.c"> (Madrid).</span>
         </p>
         <p>
           <span data-i18n="about.p2.a">Mi enfoque combina lo </span><strong data-i18n="about.p2.b">defensivo</strong><span data-i18n="about.p2.c"> (SIEM, threat detection, arquitectura de seguridad) con la </span><strong data-i18n="about.p2.d">curiosidad ofensiva</strong><span data-i18n="about.p2.e">: practico recon, fuzzing y análisis de vulnerabilidades sobre programas públicos de bug bounty para mantenerme al día con cómo piensan los atacantes. Mantengo un </span><strong data-i18n="about.p2.f">laboratorio local de IA</strong><span data-i18n="about.p2.g"> con modelos cuantizados sobre RTX 3060 que uso tanto para análisis de seguridad como para acelerar mi propio aprendizaje.</span>
@@ -2069,15 +2091,15 @@
         <h3 class="about-now-title" id="about-now-title" data-i18n="about.nowTitle">// now</h3>
         <div class="about-now-row">
           <span class="about-now-key" data-i18n="about.now.role.k">role</span>
-          <span class="about-now-value" data-i18n="about.now.role.v">Junior Cyber Consultant · Deloitte</span>
+          <span class="about-now-value" data-i18n="about.now.role.v">Cybersecurity Consultant · Deloitte</span>
         </div>
         <div class="about-now-row">
           <span class="about-now-key" data-i18n="about.now.focus.k">focus</span>
-          <span class="about-now-value" data-i18n="about.now.focus.v">Security Architecture · Threat Modeling</span>
+          <span class="about-now-value" data-i18n="about.now.focus.v">Security Architecture</span>
         </div>
         <div class="about-now-row">
           <span class="about-now-key" data-i18n="about.now.status.k">status</span>
-          <span class="about-now-value about-now-value--accent" data-i18n="about.now.status.v">Open to opportunities</span>
+          <span class="about-now-value about-now-value--accent" data-i18n="about.now.status.v">Activo en proyectos y bug bounty</span>
         </div>
       </aside>
     </div>
@@ -2097,16 +2119,12 @@
         </div>
         <div class="timeline-body">
           <h3 class="timeline-role">
-            <img class="timeline-logo" src="assets/companies/deloitte.svg" alt="Deloitte" width="24" height="24" loading="lazy" decoding="async" onerror="this.style.display='none'"><span data-i18n="exp.deloitte.role">Junior Cybersecurity Consultant</span><span class="timeline-sep">—</span><span class="timeline-company" data-i18n="exp.deloitte.company">Deloitte</span>
+            <img class="timeline-logo" src="assets/companies/deloitte.svg" alt="Deloitte" width="24" height="24" loading="lazy" decoding="async" onerror="this.style.display='none'"><span data-i18n="exp.deloitte.role">Cybersecurity Consultant</span><span class="timeline-sep">—</span><span class="timeline-company" data-i18n="exp.deloitte.company">Deloitte</span>
           </h3>
           <p class="timeline-area" data-i18n="exp.deloitte.area">Security Architecture · Madrid</p>
-          <ul class="timeline-bullets">
-            <li data-i18n="exp.deloitte.b1">Diseño y revisión de arquitecturas de seguridad para clientes enterprise siguiendo principios de defense in depth y zero trust.</li>
-            <li data-i18n="exp.deloitte.b2">Modelado de amenazas y análisis de blast radius en sistemas distribuidos.</li>
-            <li data-i18n="exp.deloitte.b3">Mapeo de controles a frameworks (NIST CSF, ISO 27001, ENS).</li>
-          </ul>
+          <p class="timeline-summary" data-i18n="exp.deloitte.summary">Security Architecture en el equipo de Technology &amp; Transformation – Cyber. Diseño de arquitecturas defensivas y aplicación de frameworks de seguridad sobre sistemas enterprise.</p>
           <div class="tags">
-            <span>Security Architecture</span><span>Threat Modeling</span><span>NIST CSF</span><span>ISO 27001</span><span>Zero Trust</span>
+            <span>Security Architecture</span>
           </div>
         </div>
       </li>
@@ -2117,9 +2135,9 @@
         </div>
         <div class="timeline-body">
           <h3 class="timeline-role">
-            <img class="timeline-logo" src="assets/companies/motick.svg" alt="Motick" width="24" height="24" loading="lazy" decoding="async" onerror="this.style.display='none'"><span data-i18n="exp.motick.role">Prácticas Ingeniería Informática</span><span class="timeline-sep">—</span><span class="timeline-company" data-i18n="exp.motick.company">Motick</span>
+            <img class="timeline-logo" src="assets/companies/motick.svg" alt="Motick" width="24" height="24" loading="lazy" decoding="async" onerror="this.style.display='none'"><span data-i18n="exp.motick.role">Data Engineering Intern</span><span class="timeline-sep">—</span><span class="timeline-company" data-i18n="exp.motick.company">Motick</span>
           </h3>
-          <p class="timeline-area" data-i18n="exp.motick.area">Data Engineering · Madrid (remoto)</p>
+          <p class="timeline-area" data-i18n="exp.motick.area">Data Engineering · Madrid (híbrido)</p>
           <ul class="timeline-bullets">
             <li data-i18n="exp.motick.b1">Sistema de scraping distribuido sobre Wallapop monitorizando 18 concesionarios profesionales y ~5.000 vehículos/día con completitud de datos &gt;95%.</li>
             <li data-i18n="exp.motick.b2">Pipeline de extracción en Python + Selenium con jobs paralelos desplegados en Google Cloud Platform vía GitHub Actions (cron diario 06:00 CEST, ~5h por job).</li>
@@ -2183,13 +2201,13 @@
           <span>Next.js 16</span><span>TypeScript</span><span>Supabase</span><span>Gemini API</span><span>Tailwind</span><span>Recharts</span>
         </div>
         <div class="project-actions">
-          <a class="project-action" href="https://sayndex.vercel.app/" target="_blank" rel="noopener">
+          <button class="project-action" type="button" data-demo="sayndex">
             <i data-lucide="external-link" aria-hidden="true"></i>
             <span data-i18n="projects.actions.demo">Live demo</span>
-          </a>
+          </button>
           <button class="project-action" type="button" data-project="sayndex">
             <img class="tech-icon" data-icon-slug="github" src="https://cdn.simpleicons.org/github/a8a8a3" width="16" height="16" alt="" loading="lazy" decoding="async">
-            <span data-i18n="projects.actions.code">Source code</span>
+            <span data-i18n="projects.actions.code">Solicitar acceso</span>
           </button>
         </div>
       </div>
@@ -2225,9 +2243,9 @@
         <div class="project-meta">
           <span class="project-meta-num">02</span>
           <span class="project-meta-divider" aria-hidden="true"></span>
-          <span class="project-meta-period">2025</span>
-          <span class="project-meta-role" data-i18n="projects.motick.role">SWE Intern</span>
-          <span class="badge" data-i18n="badges.nda">Internship · Code under NDA</span>
+          <span class="project-meta-period" data-i18n="projects.motick.period">2025 (6 meses)</span>
+          <span class="project-meta-role" data-i18n="projects.motick.role">Data Engineering Intern</span>
+          <span class="badge" data-i18n="badges.nda">Internship · NDA</span>
         </div>
         <div class="project-title-row">
           <img class="project-logo icon-themed" src="assets/projects/motick.svg" alt="MOTICK logo" width="36" height="36" loading="lazy" decoding="async" onerror="this.style.display='none'">
@@ -2283,13 +2301,13 @@
           <span>Wazuh</span><span>ELK</span><span>Flask</span><span>Docker</span><span>Sigma</span><span>MITRE ATT&amp;CK</span>
         </div>
         <div class="project-actions">
-          <a class="project-action" href="https://trustforge-demo.onrender.com/" target="_blank" rel="noopener">
+          <button class="project-action" type="button" data-demo="trustforge">
             <i data-lucide="external-link" aria-hidden="true"></i>
             <span data-i18n="projects.actions.demo">Live demo</span>
-          </a>
+          </button>
           <button class="project-action" type="button" data-project="trustforge">
             <img class="tech-icon" data-icon-slug="github" src="https://cdn.simpleicons.org/github/a8a8a3" width="16" height="16" alt="" loading="lazy" decoding="async">
-            <span data-i18n="projects.actions.code">Source code</span>
+            <span data-i18n="projects.actions.code">Solicitar acceso</span>
           </button>
         </div>
       </div>
@@ -2338,13 +2356,13 @@
           <span>FastAPI</span><span>Claude API</span><span>RAG</span><span>Python</span>
         </div>
         <div class="project-actions">
-          <a class="project-action" href="https://clausulazo-ai.pages.dev/" target="_blank" rel="noopener">
+          <button class="project-action" type="button" data-demo="clausulazo">
             <i data-lucide="external-link" aria-hidden="true"></i>
             <span data-i18n="projects.actions.demo">Live demo</span>
-          </a>
+          </button>
           <button class="project-action" type="button" data-project="clausulazo">
             <img class="tech-icon" data-icon-slug="github" src="https://cdn.simpleicons.org/github/a8a8a3" width="16" height="16" alt="" loading="lazy" decoding="async">
-            <span data-i18n="projects.actions.code">Source code</span>
+            <span data-i18n="projects.actions.code">Solicitar acceso</span>
           </button>
         </div>
       </div>
@@ -2399,7 +2417,7 @@
         <div class="skill-card-header">
           <i data-lucide="shield-check" aria-hidden="true"></i>
           <h3 class="skill-card-title" data-i18n="skills.security.heading">Seguridad defensiva</h3>
-          <span class="skill-card-count" aria-hidden="true">14</span>
+          <span class="skill-card-count" aria-hidden="true">10</span>
         </div>
         <div class="skill-pills">
           <span class="skill-pill"><i data-lucide="shield-check" aria-hidden="true"></i>SIEM</span>
@@ -2410,10 +2428,6 @@
           <span class="skill-pill"><i data-lucide="target" aria-hidden="true"></i>MITRE ATT&amp;CK</span>
           <span class="skill-pill"><i data-lucide="file-check" aria-hidden="true"></i>NIST CSF</span>
           <span class="skill-pill"><i data-lucide="file-check" aria-hidden="true"></i>ISO 27001</span>
-          <span class="skill-pill"><i data-lucide="file-check" aria-hidden="true"></i>ENS</span>
-          <span class="skill-pill"><i data-lucide="file-check" aria-hidden="true"></i>GDPR</span>
-          <span class="skill-pill"><i data-lucide="file-check" aria-hidden="true"></i>NIS2</span>
-          <span class="skill-pill"><i data-lucide="file-check" aria-hidden="true"></i>DORA</span>
           <span class="skill-pill"><i data-lucide="layers" aria-hidden="true"></i>Threat modeling</span>
           <span class="skill-pill"><i data-lucide="layers" aria-hidden="true"></i>Defense in depth</span>
         </div>
@@ -2560,6 +2574,28 @@
 
 </div>
 
+<div class="modal" id="demo-access-modal" role="dialog" aria-modal="true" aria-labelledby="demo-access-modal-title" aria-hidden="true">
+  <div class="modal-backdrop" data-demo-modal-close></div>
+  <div class="modal-content" role="document">
+    <button class="modal-close" type="button" aria-label="Cerrar" data-i18n-aria="modal.close" data-demo-modal-close>
+      <i data-lucide="x" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title" id="demo-access-modal-title" data-i18n="demo.title">Acceso restringido</h3>
+    <p class="modal-intro" data-i18n="demo.intro">Introduce la clave de acceso para ver la demo</p>
+    <form class="modal-form" data-demo-modal-form novalidate>
+      <div class="modal-field">
+        <label for="demo-modal-password" data-i18n="demo.fields.password">Clave de acceso</label>
+        <input id="demo-modal-password" name="password" type="password" required autocomplete="off" spellcheck="false">
+      </div>
+      <p class="modal-error" data-demo-modal-error data-i18n="demo.error" role="alert" aria-live="polite" hidden>Clave incorrecta. Si necesitas acceso, contacta conmigo.</p>
+      <div class="modal-actions">
+        <button type="button" class="modal-cancel" data-demo-modal-close data-i18n="modal.cancel">Cancelar</button>
+        <button type="submit" class="modal-submit" data-i18n="demo.submit">Acceder</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="modal" id="source-access-modal" role="dialog" aria-modal="true" aria-labelledby="source-access-modal-title" aria-hidden="true">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-content" role="document">
@@ -2585,6 +2621,10 @@
         <label for="modal-reason" data-i18n="modal.fields.reason">Motivo</label>
         <textarea id="modal-reason" name="reason" rows="4" required></textarea>
       </div>
+      <label class="modal-honeypot" aria-hidden="true">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+      </label>
+      <p class="modal-error" data-modal-error data-i18n="modal.errorSend" role="alert" aria-live="polite" hidden>No se pudo enviar la solicitud. Inténtalo de nuevo o escribe directamente a 7770.cb2@gmail.com</p>
       <div class="modal-actions">
         <button type="button" class="modal-cancel" data-modal-close data-i18n="modal.cancel">Cancelar</button>
         <button type="submit" class="modal-submit" data-i18n="modal.submit">Enviar solicitud</button>
@@ -2599,8 +2639,8 @@
 <script>
   const translations = {
     es: {
-      "meta.title": "Carlos Peraza · Ingeniero de ciberseguridad",
-      "meta.description": "Carlos Peraza · Ingeniero Informático y Cybersecurity Specialist. SIEM, threat detection y bug bounty.",
+      "meta.title": "Carlos Peraza · Cybersecurity Consultant",
+      "meta.description": "Carlos Peraza · Cybersecurity Consultant en Deloitte. Security Architecture, SIEM, threat detection y bug bounty.",
       "nav.about": "about",
       "nav.experience": "experiencia",
       "nav.projects": "proyectos",
@@ -2611,12 +2651,11 @@
       "nav.menuOpen": "Abrir menú",
       "nav.menuClose": "Cerrar menú",
       "hero.role": "Ingeniero Informático · Madrid",
-      "hero.ledeA": "Junior Cybersecurity Consultant en Deloitte",
+      "hero.ledeA": "Cybersecurity Consultant en Deloitte",
       "hero.ledeB": " (Security Architecture). Construyo proyectos ",
       "hero.ledeC": "defensivos y ofensivos",
-      "hero.ledeD": " con stack local de IA. Bug hunter en mi tiempo libre.",
+      "hero.ledeD": " con stack local de IA. Activo en bug bounty (HackerOne, Intigriti).",
       "hero.ctaProjects": "Ver proyectos",
-      "hero.status": "Disponible para oportunidades",
       "hero.scroll": "scroll",
       "sections.about": "› about",
       "sections.experience": "› experiencia",
@@ -2628,33 +2667,31 @@
       "skills.langs.heading": "Lenguajes y frameworks",
       "skills.infra.heading": "Infraestructura e IA",
       "badges.current": "actual",
-      "badges.nda": "Internship · Code under NDA",
+      "badges.nda": "Internship · NDA",
       "badges.tfgUfv": "TFG · UFV 2025",
       "badges.legal": "Legal-tech",
       "projects.actions.demo": "Live demo",
-      "projects.actions.code": "Source code",
+      "projects.actions.code": "Solicitar acceso",
       "projects.actions.private": "Repo privado",
       "projects.actions.notYet": "Próximamente",
       "projects.carousel.prev": "Anterior",
       "projects.carousel.next": "Siguiente",
       "projects.carousel.empty": "Screenshots coming soon",
       "exp.deloitte.period": "may 2026 — actualidad",
-      "exp.deloitte.role": "Junior Cybersecurity Consultant",
+      "exp.deloitte.role": "Cybersecurity Consultant",
       "exp.deloitte.company": "Deloitte",
       "exp.deloitte.area": "Security Architecture · Madrid",
-      "exp.deloitte.b1": "Diseño y revisión de arquitecturas de seguridad para clientes enterprise siguiendo principios de defense in depth y zero trust.",
-      "exp.deloitte.b2": "Modelado de amenazas y análisis de blast radius en sistemas distribuidos.",
-      "exp.deloitte.b3": "Mapeo de controles a frameworks (NIST CSF, ISO 27001, ENS).",
+      "exp.deloitte.summary": "Security Architecture en el equipo de Technology & Transformation – Cyber. Diseño de arquitecturas defensivas y aplicación de frameworks de seguridad sobre sistemas enterprise.",
       "exp.motick.period": "may 2025 — nov 2025",
-      "exp.motick.role": "Prácticas Ingeniería Informática",
+      "exp.motick.role": "Data Engineering Intern",
       "exp.motick.company": "Motick",
-      "exp.motick.area": "Data Engineering · Madrid (remoto)",
+      "exp.motick.area": "Data Engineering · Madrid (híbrido)",
       "exp.motick.b1": "Sistema de scraping distribuido sobre Wallapop monitorizando 18 concesionarios profesionales y ~5.000 vehículos/día con completitud de datos >95%.",
       "exp.motick.b2": "Pipeline de extracción en Python + Selenium con jobs paralelos desplegados en Google Cloud Platform vía GitHub Actions (cron diario 06:00 CEST, ~5h por job).",
       "exp.motick.b3": "Análisis automatizado con Pandas: deduplicación por marca+modelo+precio+año+km, detección de cambios de estado e histórico de visitas/likes para inferir señales de mercado.",
       "exp.motick.b4": "Tres scrapers especializados con división por hojas (SCR.J1/J2) en Google Sheets para análisis comercial en tiempo real.",
       "about.p1.a": "Ingeniero Informático graduado por la UFV (2025) con título propio en Ciberseguridad y Hacking Ético. Actualmente ",
-      "about.p1.b": "Junior Cybersecurity Consultant en el área de Security Architecture en Deloitte",
+      "about.p1.b": "Cybersecurity Consultant en el área de Security Architecture en Deloitte",
       "about.p1.c": " (Madrid).",
       "about.p2.a": "Mi enfoque combina lo ",
       "about.p2.b": "defensivo",
@@ -2665,15 +2702,16 @@
       "about.p2.g": " con modelos cuantizados sobre RTX 3060 que uso tanto para análisis de seguridad como para acelerar mi propio aprendizaje.",
       "about.nowTitle": "// now",
       "about.now.role.k": "role",
-      "about.now.role.v": "Junior Cyber Consultant · Deloitte",
+      "about.now.role.v": "Cybersecurity Consultant · Deloitte",
       "about.now.focus.k": "focus",
-      "about.now.focus.v": "Security Architecture · Threat Modeling",
+      "about.now.focus.v": "Security Architecture",
       "about.now.status.k": "status",
-      "about.now.status.v": "Open to opportunities",
+      "about.now.status.v": "Activo en proyectos y bug bounty",
       "badges.live": "En producción",
       "projects.motick.title": "MOTICK — Sistema de scraping distribuido para análisis de mercado automoción",
       "projects.motick.description": "Pipeline de extracción multi-fuente sobre Wallapop monitorizando 18 concesionarios y ~5.000 vehículos/día. Tres scrapers especializados en paralelo con jobs en GCP, deduplicación inteligente y completitud >95%. Output a Google Sheets para análisis comercial diario.",
-      "projects.motick.role": "SWE Intern",
+      "projects.motick.role": "Data Engineering Intern",
+      "projects.motick.period": "2025 (6 meses)",
       "projects.sayndex.title": "SAYNDEX — Monitorización de menciones en LLMs",
       "projects.sayndex.description": "SaaS multi-tenant que monitoriza cómo los LLMs (ChatGPT, Claude, Gemini) hablan de tu marca. Auth con Supabase RLS, dashboards animados en Recharts, tracking histórico de menciones por modelo y cron diario sobre Vercel.",
       "projects.sayndex.role": "Founder & dev",
@@ -2706,11 +2744,18 @@
       "modal.submit": "Enviar solicitud",
       "modal.cancel": "Cancelar",
       "modal.success": "Solicitud enviada — te respondo en menos de 24h",
-      "modal.close": "Cerrar"
+      "modal.sending": "Enviando...",
+      "modal.errorSend": "No se pudo enviar la solicitud. Inténtalo de nuevo o escribe directamente a 7770.cb2@gmail.com",
+      "modal.close": "Cerrar",
+      "demo.title": "Acceso restringido",
+      "demo.intro": "Introduce la clave de acceso para ver la demo",
+      "demo.fields.password": "Clave de acceso",
+      "demo.submit": "Acceder",
+      "demo.error": "Clave incorrecta. Si necesitas acceso, contacta conmigo."
     },
     en: {
-      "meta.title": "Carlos Peraza · Cybersecurity Engineer",
-      "meta.description": "Carlos Peraza · Computer Engineer and Cybersecurity Specialist. SIEM, threat detection and bug bounty.",
+      "meta.title": "Carlos Peraza · Cybersecurity Consultant",
+      "meta.description": "Carlos Peraza · Cybersecurity Consultant at Deloitte. Security Architecture, SIEM, threat detection and bug bounty.",
       "nav.about": "about",
       "nav.experience": "experience",
       "nav.projects": "projects",
@@ -2721,12 +2766,11 @@
       "nav.menuOpen": "Open menu",
       "nav.menuClose": "Close menu",
       "hero.role": "Computer Engineer · Madrid",
-      "hero.ledeA": "Junior Cybersecurity Consultant at Deloitte",
+      "hero.ledeA": "Cybersecurity Consultant at Deloitte",
       "hero.ledeB": " (Security Architecture). I build ",
       "hero.ledeC": "defensive and offensive",
-      "hero.ledeD": " projects with a local AI stack. Bug hunter in my free time.",
+      "hero.ledeD": " projects with a local AI stack. Active in bug bounty (HackerOne, Intigriti).",
       "hero.ctaProjects": "View projects",
-      "hero.status": "Open to opportunities",
       "hero.scroll": "scroll",
       "sections.about": "› about",
       "sections.experience": "› experience",
@@ -2738,33 +2782,31 @@
       "skills.langs.heading": "Languages & Frameworks",
       "skills.infra.heading": "Infra & AI",
       "badges.current": "current",
-      "badges.nda": "Internship · Code under NDA",
+      "badges.nda": "Internship · NDA",
       "badges.tfgUfv": "Thesis · UFV 2025",
       "badges.legal": "Legal-tech",
       "projects.actions.demo": "Live demo",
-      "projects.actions.code": "Source code",
+      "projects.actions.code": "Request access",
       "projects.actions.private": "Private repo",
       "projects.actions.notYet": "Coming soon",
       "projects.carousel.prev": "Previous",
       "projects.carousel.next": "Next",
       "projects.carousel.empty": "Screenshots coming soon",
       "exp.deloitte.period": "May 2026 — present",
-      "exp.deloitte.role": "Junior Cybersecurity Consultant",
+      "exp.deloitte.role": "Cybersecurity Consultant",
       "exp.deloitte.company": "Deloitte",
       "exp.deloitte.area": "Security Architecture · Madrid",
-      "exp.deloitte.b1": "Design and review of security architectures for enterprise clients following defense in depth and zero trust principles.",
-      "exp.deloitte.b2": "Threat modeling and blast radius analysis on distributed systems.",
-      "exp.deloitte.b3": "Control mapping to frameworks (NIST CSF, ISO 27001, ENS).",
+      "exp.deloitte.summary": "Security Architecture in the Technology & Transformation – Cyber team. Defensive architecture design and security framework application on enterprise systems.",
       "exp.motick.period": "May 2025 — Nov 2025",
-      "exp.motick.role": "Software Engineering Intern",
+      "exp.motick.role": "Data Engineering Intern",
       "exp.motick.company": "Motick",
-      "exp.motick.area": "Data Engineering · Madrid (remote)",
+      "exp.motick.area": "Data Engineering · Madrid (hybrid)",
       "exp.motick.b1": "Distributed scraping system on Wallapop monitoring 18 professional dealerships and ~5,000 vehicles/day with >95% data completeness.",
       "exp.motick.b2": "Extraction pipeline in Python + Selenium with parallel jobs deployed on Google Cloud Platform via GitHub Actions (daily cron at 06:00 CEST, ~5h per job).",
       "exp.motick.b3": "Automated analysis with Pandas: deduplication by brand+model+price+year+km, status change detection and visits/likes history to infer market signals.",
       "exp.motick.b4": "Three specialized scrapers with sheet partitioning (SCR.J1/J2) on Google Sheets for real-time commercial analysis.",
       "about.p1.a": "Computer Engineer graduated from UFV (2025) with a specialization degree in Cybersecurity and Ethical Hacking. Currently ",
-      "about.p1.b": "Junior Cybersecurity Consultant in the Security Architecture practice at Deloitte",
+      "about.p1.b": "Cybersecurity Consultant in the Security Architecture practice at Deloitte",
       "about.p1.c": " (Madrid).",
       "about.p2.a": "My approach combines the ",
       "about.p2.b": "defensive",
@@ -2775,15 +2817,16 @@
       "about.p2.g": " with quantized models on an RTX 3060 that I use both for security analysis and to accelerate my own learning.",
       "about.nowTitle": "// now",
       "about.now.role.k": "role",
-      "about.now.role.v": "Junior Cyber Consultant · Deloitte",
+      "about.now.role.v": "Cybersecurity Consultant · Deloitte",
       "about.now.focus.k": "focus",
-      "about.now.focus.v": "Security Architecture · Threat Modeling",
+      "about.now.focus.v": "Security Architecture",
       "about.now.status.k": "status",
-      "about.now.status.v": "Open to opportunities",
+      "about.now.status.v": "Active on projects and bug bounty",
       "badges.live": "Live",
       "projects.motick.title": "MOTICK — Distributed scraping system for automotive market intelligence",
       "projects.motick.description": "Multi-source extraction pipeline on Wallapop monitoring 18 dealerships and ~5,000 vehicles/day. Three specialized scrapers running in parallel as GCP jobs, smart deduplication and >95% data completeness. Output to Google Sheets for daily commercial analysis.",
-      "projects.motick.role": "SWE Intern",
+      "projects.motick.role": "Data Engineering Intern",
+      "projects.motick.period": "2025 (6 months)",
       "projects.sayndex.title": "SAYNDEX — LLM mention monitoring",
       "projects.sayndex.description": "Multi-tenant SaaS that monitors how LLMs (ChatGPT, Claude, Gemini) talk about your brand. Auth with Supabase RLS, animated Recharts dashboards, historical mention tracking per model and daily cron on Vercel.",
       "projects.sayndex.role": "Founder & dev",
@@ -2816,6 +2859,13 @@
       "modal.submit": "Send request",
       "modal.cancel": "Cancel",
       "modal.success": "Request sent — I'll get back to you within 24h",
+      "modal.sending": "Sending...",
+      "modal.errorSend": "Couldn't send the request. Try again or email me directly at 7770.cb2@gmail.com",
+      "demo.title": "Restricted access",
+      "demo.intro": "Enter the access key to view the demo",
+      "demo.fields.password": "Access key",
+      "demo.submit": "Access",
+      "demo.error": "Wrong key. If you need access, contact me.",
       "modal.close": "Close"
     }
   };
@@ -3485,6 +3535,8 @@ void main() {
     if (!triggers.length) return;
     const form = modal.querySelector("[data-modal-form]");
     const successEl = modal.querySelector("[data-modal-success]");
+    const errorEl = modal.querySelector("[data-modal-error]");
+    const submitBtn = modal.querySelector(".modal-submit");
     const closers = modal.querySelectorAll("[data-modal-close]");
     const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -3494,6 +3546,9 @@ void main() {
       trustforge: "TrustForge",
       clausulazo: "CLAUSULAZO"
     };
+
+    const _wfk = "23920680-763d-4e4f-823b-708162d5ce6a";
+    const _wfEndpoint = "https://api.web3forms.com/submit";
 
     let lastFocused = null;
     let currentProject = null;
@@ -3510,9 +3565,14 @@ void main() {
         successEl.classList.remove("is-visible");
         successEl.setAttribute("aria-hidden", "true");
       }
+      if (errorEl) errorEl.hidden = true;
       if (form) {
         form.reset();
         form.style.display = "";
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-busy");
       }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
@@ -3562,31 +3622,75 @@ void main() {
       }
     });
 
+    const currentLangKey = () => (document.documentElement.lang === "en" ? "en" : "es");
+    const t = (key, fallback) => {
+      const dict = translations[currentLangKey()];
+      return (dict && dict[key]) || fallback;
+    };
+
     if (form) {
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
         if (!form.reportValidity()) return;
         const data = new FormData(form);
+        if (String(data.get("botcheck") || "")) return;
         const name = String(data.get("name") || "").trim();
         const email = String(data.get("email") || "").trim();
         const company = String(data.get("company") || "").trim();
         const reason = String(data.get("reason") || "").trim();
+        if (!name || !email || !reason) return;
         const project = projectNames[currentProject] || "Project";
 
-        const subject = `Source code access request — ${project}`;
-        const lines = [
-          `Project: ${project}`,
-          "",
-          `Name: ${name}`,
-          `Email: ${email}`
-        ];
-        if (company) lines.push(`Company / role: ${company}`);
-        lines.push("", "Reason:", reason);
-        const body = lines.join("\n");
+        if (errorEl) errorEl.hidden = true;
 
-        const mailto = `mailto:cperazaa.01@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailto;
+        let restoreLabel = "Enviar solicitud";
+        if (submitBtn) {
+          restoreLabel = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.setAttribute("aria-busy", "true");
+          submitBtn.textContent = t("modal.sending", "Enviando...");
+        }
 
+        const payload = {
+          access_key: _wfk,
+          subject: "Solicitud de acceso al código - b4te5.github.io",
+          from_name: "Portfolio Carlos Peraza",
+          name,
+          email,
+          company: company || "(no especificado)",
+          message: reason,
+          project,
+          botcheck: "",
+        };
+
+        let ok = false;
+        try {
+          const response = await fetch(_wfEndpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json().catch(() => ({}));
+          ok = response.ok && result && result.success === true;
+        } catch {
+          ok = false;
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute("aria-busy");
+          submitBtn.textContent = restoreLabel;
+        }
+
+        if (!ok) {
+          if (errorEl) errorEl.hidden = false;
+          return;
+        }
+
+        form.reset();
         form.style.display = "none";
         if (successEl) {
           successEl.classList.add("is-visible");
@@ -3595,7 +3699,7 @@ void main() {
         successTimer = window.setTimeout(() => {
           close();
           successTimer = null;
-        }, 3000);
+        }, 4000);
       });
     }
   };
