@@ -406,9 +406,8 @@
     min-width: 0;
   }
   .hero-portrait img {
-    width: 736px;
-    height: 736px;
-    max-width: 100%;
+    width: 320px;
+    height: 320px;
     border: none;
     border-radius: 50%;
     background: var(--bg-card);
@@ -1430,7 +1429,6 @@
 
   @media (min-width: 1024px) {
     .hero {
-      grid-template-columns: minmax(0, 1fr) 736px;
       gap: 5rem;
     }
   }
@@ -1444,9 +1442,8 @@
       font-size: clamp(40px, 6vw, 56px);
     }
     .hero-portrait img {
-      width: min(100%, 736px);
-      height: auto;
-      aspect-ratio: 1 / 1;
+      width: 200px;
+      height: 200px;
     }
   }
 
@@ -1556,9 +1553,8 @@
       order: -1;
     }
     .hero-portrait img {
-      width: min(60vw, 736px);
-      height: auto;
-      aspect-ratio: 1 / 1;
+      width: 140px;
+      height: 140px;
       object-position: center 35%;
     }
     .hero-scroll {
