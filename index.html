@@ -1978,6 +1978,13 @@
     line-height: 1.5;
   }
   .modal-error[hidden] { display: none; }
+  .modal-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
@@ -2610,6 +2617,10 @@
         <label for="modal-reason" data-i18n="modal.fields.reason">Motivo</label>
         <textarea id="modal-reason" name="reason" rows="4" required></textarea>
       </div>
+      <label class="modal-honeypot" aria-hidden="true">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+      </label>
+      <p class="modal-error" data-modal-error data-i18n="modal.errorSend" role="alert" aria-live="polite" hidden>No se pudo enviar la solicitud. Inténtalo de nuevo o escribe directamente a 7770.cb2@gmail.com</p>
       <div class="modal-actions">
         <button type="button" class="modal-cancel" data-modal-close data-i18n="modal.cancel">Cancelar</button>
         <button type="submit" class="modal-submit" data-i18n="modal.submit">Enviar solicitud</button>
@@ -2728,6 +2739,8 @@
       "modal.submit": "Enviar solicitud",
       "modal.cancel": "Cancelar",
       "modal.success": "Solicitud enviada — te respondo en menos de 24h",
+      "modal.sending": "Enviando...",
+      "modal.errorSend": "No se pudo enviar la solicitud. Inténtalo de nuevo o escribe directamente a 7770.cb2@gmail.com",
       "modal.close": "Cerrar",
       "demo.title": "Acceso restringido",
       "demo.intro": "Introduce la clave de acceso para ver la demo",
@@ -2840,6 +2853,8 @@
       "modal.submit": "Send request",
       "modal.cancel": "Cancel",
       "modal.success": "Request sent — I'll get back to you within 24h",
+      "modal.sending": "Sending...",
+      "modal.errorSend": "Couldn't send the request. Try again or email me directly at 7770.cb2@gmail.com",
       "demo.title": "Restricted access",
       "demo.intro": "Enter the access key to view the demo",
       "demo.fields.password": "Access key",
@@ -3514,6 +3529,8 @@ void main() {
     if (!triggers.length) return;
     const form = modal.querySelector("[data-modal-form]");
     const successEl = modal.querySelector("[data-modal-success]");
+    const errorEl = modal.querySelector("[data-modal-error]");
+    const submitBtn = modal.querySelector(".modal-submit");
     const closers = modal.querySelectorAll("[data-modal-close]");
     const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -3523,6 +3540,9 @@ void main() {
       trustforge: "TrustForge",
       clausulazo: "CLAUSULAZO"
     };
+
+    const _wfk = "23920680-763d-4e4f-823b-708162d5ce6a";
+    const _wfEndpoint = "https://api.web3forms.com/submit";
 
     let lastFocused = null;
     let currentProject = null;
@@ -3539,9 +3559,14 @@ void main() {
         successEl.classList.remove("is-visible");
         successEl.setAttribute("aria-hidden", "true");
       }
+      if (errorEl) errorEl.hidden = true;
       if (form) {
         form.reset();
         form.style.display = "";
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-busy");
       }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
@@ -3591,31 +3616,75 @@ void main() {
       }
     });
 
+    const currentLangKey = () => (document.documentElement.lang === "en" ? "en" : "es");
+    const t = (key, fallback) => {
+      const dict = translations[currentLangKey()];
+      return (dict && dict[key]) || fallback;
+    };
+
     if (form) {
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
         if (!form.reportValidity()) return;
         const data = new FormData(form);
+        if (String(data.get("botcheck") || "")) return;
         const name = String(data.get("name") || "").trim();
         const email = String(data.get("email") || "").trim();
         const company = String(data.get("company") || "").trim();
         const reason = String(data.get("reason") || "").trim();
+        if (!name || !email || !reason) return;
         const project = projectNames[currentProject] || "Project";
 
-        const subject = `Source code access request — ${project}`;
-        const lines = [
-          `Project: ${project}`,
-          "",
-          `Name: ${name}`,
-          `Email: ${email}`
-        ];
-        if (company) lines.push(`Company / role: ${company}`);
-        lines.push("", "Reason:", reason);
-        const body = lines.join("\n");
+        if (errorEl) errorEl.hidden = true;
 
-        const mailto = `mailto:cperazaa.01@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailto;
+        let restoreLabel = "Enviar solicitud";
+        if (submitBtn) {
+          restoreLabel = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.setAttribute("aria-busy", "true");
+          submitBtn.textContent = t("modal.sending", "Enviando...");
+        }
 
+        const payload = {
+          access_key: _wfk,
+          subject: "Solicitud de acceso al código - b4te5.github.io",
+          from_name: "Portfolio Carlos Peraza",
+          name,
+          email,
+          company: company || "(no especificado)",
+          message: reason,
+          project,
+          botcheck: "",
+        };
+
+        let ok = false;
+        try {
+          const response = await fetch(_wfEndpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json().catch(() => ({}));
+          ok = response.ok && result && result.success === true;
+        } catch {
+          ok = false;
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute("aria-busy");
+          submitBtn.textContent = restoreLabel;
+        }
+
+        if (!ok) {
+          if (errorEl) errorEl.hidden = false;
+          return;
+        }
+
+        form.reset();
         form.style.display = "none";
         if (successEl) {
           successEl.classList.add("is-visible");
@@ -3624,7 +3693,7 @@ void main() {
         successTimer = window.setTimeout(() => {
           close();
           successTimer = null;
-        }, 3000);
+        }, 4000);
       });
     }
   };
